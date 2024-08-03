@@ -1,15 +1,7 @@
 beautifulsoup4
 lxml
-scipy
-numpy
-pandas
-plotly
-joblib
-igraph
+requests
 surprise
-networkx
 streamlit
-tmdbv3api
 scikit-learn
-ydata_profiling
-streamlit_pandas_profiling
+
