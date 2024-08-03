@@ -1,5 +1,5 @@
 streamlit==1.37.0
-conda-forge::scikit-surprise
+forge::scikit-surprise
 numpy<2
 pybind11>=2.12
 beautifulsoup4
