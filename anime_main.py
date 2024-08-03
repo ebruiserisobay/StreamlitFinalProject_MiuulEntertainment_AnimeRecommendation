@@ -5,7 +5,8 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from anime_scrape import get_anime_image
-from surprise import Dataset, Reader, SVD
+from lightfm import LightFM
+from lightfm.data import Dataset
 
 ######################################## read_csv########################################
 # st.cache_data
@@ -429,17 +430,30 @@ rating_complete_data = get_data()
 
 ######################################## anime model base recommendation hazirlik ########################################
 
-# Veriyi hazırlama: Puanlama verilerini Surprise kütüphanesi için hazırlamak.Kullanarak (Supervised)
-reader = Reader(rating_scale=(1, 10))
-data = Dataset.load_from_df(rating_complete_data[['user_id', 'anime_id', 'rating']], reader)
 
-trainset = data.build_full_trainset()
+# Veriyi hazırlama: Puanlama verilerini Surprise kütüphanesi için hazırlamak.Kullanarak (Supervised)
+#reader = Reader(rating_scale=(1, 10))
+#data = Dataset.load_from_df(rating_complete_data[['user_id', 'anime_id', 'rating']], reader)
+
+#trainset = data.build_full_trainset()
 
 # sistemde gridsearch beklemeyelim diye direkt sonucunu atadim.
 # SVD modelini hiperparametrelerle oluşturma
-model_final = SVD(n_factors=120, n_epochs=20, lr_all=0.01, reg_all=0.1)
 
-model_final.fit(trainset)
+
+#model_final = SVD(n_factors=120, n_epochs=20, lr_all=0.01, reg_all=0.1)
+
+#model_final.fit(trainset)
+
+# LightFM dataset'i oluşturun
+
+dataset = Dataset()
+model_final = dataset.fit(users=rating_complete_data['user_id'].unique(),items=rating_complete_data['anime_id'].unique())
+
+# Etkileşim matrisini oluşturun
+(interactions, weights) = dataset.build_interactions(
+    ((row['user_id'], row['anime_id'], row['rating']) for row in rating_complete_data.itertuples())
+)
 
 ######################################## anime model base recommendation fonksiyon ########################################
 
