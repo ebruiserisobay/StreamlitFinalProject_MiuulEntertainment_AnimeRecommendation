@@ -1,5 +1,4 @@
-streamlit==1.37.0
-forge::scikit-surprise
+streamlit
 numpy<2
 pybind11>=2.12
 beautifulsoup4
