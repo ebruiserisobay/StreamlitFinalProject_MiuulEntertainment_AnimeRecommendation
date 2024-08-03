@@ -453,7 +453,7 @@ dataset.fit(users=rating_complete_data['user_id'].unique(), items=rating_complet
 
 # Etkileşim matrisini oluşturun
 (interactions, weights) = dataset.build_interactions(
-    ((row['user_id'], row['anime_id'], row['rating']) for row in rating_complete_data.itertuples())
+    ((row.user_id row.anime_id, row.rating) for row in rating_complete_data.itertuples())
 )
 
 # LightFM modelini eğitin
