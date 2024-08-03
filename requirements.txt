@@ -1,6 +1,6 @@
 beautifulsoup4
 lxml
-numpy==1.21.0
+numpy
 pandas
 requests
 scikit-learn
