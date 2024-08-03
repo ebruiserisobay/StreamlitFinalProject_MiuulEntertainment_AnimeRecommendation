@@ -5,5 +5,6 @@ numpy==1.21.0
 pandas
 requests
 scikit-learn
-scikit-surprise
+scikit-surprise==1.1.4
 streamlit
+
