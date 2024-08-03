@@ -6,11 +6,6 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from anime_scrape import get_anime_image
-from lightfm import LightFM
-from lightfm.data import Dataset
-from scipy.sparse import coo_matrix
-from sklearn.ensemble import RandomForestRegressor
-import lightgbm as lgb
 import xgboost as xgb
 
 ######################################## read_csv########################################
