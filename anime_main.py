@@ -447,37 +447,39 @@ rating_complete_data = get_data()
 
 # LightFM dataset'i oluşturun
 
+# Dataset ve modelin oluşturulması ve eğitilmesi
 dataset = Dataset()
-model_final = dataset.fit(users=rating_complete_data['user_id'].unique(),items=rating_complete_data['anime_id'].unique())
+dataset.fit(users=rating_complete_data['user_id'].unique(), items=rating_complete_data['anime_id'].unique())
 
 # Etkileşim matrisini oluşturun
 (interactions, weights) = dataset.build_interactions(
     ((row['user_id'], row['anime_id'], row['rating']) for row in rating_complete_data.itertuples())
 )
 
-######################################## anime model base recommendation fonksiyon ########################################
+# LightFM modelini eğitin
+model = LightFM(loss='warp')
+model.fit(interactions, sample_weight=weights, epochs=30, num_threads=2)
 
-# SVD modeli eğitme: Matrix Faktörizasyonu kullanarak modeli eğitmek.
-def get_svd_recommendations_anime(user_id, n_recommendations=5):
-    user_ratings = rating_complete_data[rating_complete_data['user_id'] == user_id]
-    anime_ids = user_ratings['anime_id'].tolist()
-    all_anime_ids = anime_data['MAL_ID'].tolist()
-    recommendations = []
-
-    for anime_id in all_anime_ids:
-        if (anime_id not in anime_ids):
-            pred = model_final.predict(user_id, anime_id)
-            recommendations.append((anime_id, pred.est))
-
-    recommendations = sorted(recommendations, key=lambda x: x[1], reverse=True)[:n_recommendations]
-
-    recommended_anime_ids = [r[0] for r in recommendations]
-    recommended_ratings = [r[1] for r in recommendations]
+# Anime öneri fonksiyonu
+def get_lightfm_recommendations_anime(user_id, n_recommendations=5):
+    user_index = np.where(rating_complete_data['user_id'].unique() == user_id)[0][0]
+    n_users, n_items = interactions.shape
+    
+    scores = model.predict(user_index, np.arange(n_items))
+    top_items = np.argsort(-scores)[:n_recommendations]
+    
+    recommended_anime_ids = [rating_complete_data['anime_id'].unique()[i] for i in top_items]
+    recommended_scores = [scores[i] for i in top_items]
 
     recommended_animes = anime_data[anime_data['MAL_ID'].isin(recommended_anime_ids)][['MAL_ID', 'Name', 'Japanese_name']]
-    recommended_animes['Predicted_Rating'] = recommended_ratings
+    recommended_animes['Predicted_Rating'] = recommended_scores
 
     return recommended_animes[['MAL_ID', 'Name', 'Predicted_Rating']]
+
+# Öneri fonksiyonunu test etme
+user_id = 1  # Öneri almak istediğiniz kullanıcı ID'si
+recommendations = get_lightfm_recommendations_anime(user_id)
+print(recommendations)
 
 ######################################## anime recommandation sayfa duzenlemesi ########################################
 
