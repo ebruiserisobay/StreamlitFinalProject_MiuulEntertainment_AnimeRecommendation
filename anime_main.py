@@ -461,7 +461,7 @@ model = LightFM(loss='warp')
 model.fit(interactions, sample_weight=weights, epochs=30, num_threads=2)
 
 # Anime öneri fonksiyonu
-def get_lightfm_recommendations_anime(user_id, n_recommendations=5):
+def get_svd_recommendations_anime(user_id, n_recommendations=5):
     user_index = np.where(rating_complete_data['user_id'].unique() == user_id)[0][0]
     n_users, n_items = interactions.shape
     
@@ -475,11 +475,6 @@ def get_lightfm_recommendations_anime(user_id, n_recommendations=5):
     recommended_animes['Predicted_Rating'] = recommended_scores
 
     return recommended_animes[['MAL_ID', 'Name', 'Predicted_Rating']]
-
-# Öneri fonksiyonunu test etme
-user_id = 1  # Öneri almak istediğiniz kullanıcı ID'si
-recommendations = get_lightfm_recommendations_anime(user_id)
-print(recommendations)
 
 ######################################## anime recommandation sayfa duzenlemesi ########################################
 
