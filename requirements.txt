@@ -69,7 +69,6 @@ scikit-surprise
 scipy
 Send2Trash
 six
-sklearn
 smmap
 streamlit
 terminado
