@@ -1,4 +1,4 @@
---upgrade pip
+upgrade pip
 beautifulsoup4
 lxml
 numpy==1.21.0
