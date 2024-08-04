@@ -402,7 +402,7 @@ st.markdown(
 )
 # Ana başlık için bir container oluşturun
 with home_tab.container():
-    home_tab.markdown('<div class="discover-background"><h1>Discover Your Next Adventure!</h1></div>', unsafe_allow_html=True)
+    home_tab.markdown('<div class="discover-background"><h1>Discover More!</h1></div>', unsafe_allow_html=True)
 
 home_tab.markdown("<br>", unsafe_allow_html=True)
 
