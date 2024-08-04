@@ -414,7 +414,7 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
 
     # ! anime column
     image_airbnb = "https://media1.tenor.com/m/rsSIoLjds9UAAAAC/airbnb-door.gif"
-    redirect_airbnb = "https://store.steampowered.com/"
+    redirect_airbnb = "https://airbnbrecommendations.streamlit.app/"
 
     html_airbnb = f"""
     <div style="position: relative; width: 150px; height: 150px;">
@@ -430,7 +430,7 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
 
     # ! imdb column
     image_movie = 'https://media.tenor.com/HJTXKCtOYwgAAAAM/perfect-popcorn.gif'
-    redirect_movie = "https://miuulmainpage.streamlit.app/"
+    redirect_movie = "https://miuulmovierecommender.streamlit.app/"
 
     html_movie = f"""
     <div style="position: relative; width: 150px; height: 150px;">
