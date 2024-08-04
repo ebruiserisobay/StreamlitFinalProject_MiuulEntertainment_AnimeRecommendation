@@ -10,7 +10,7 @@ import xgboost as xgb
 
 ######################################## home_tab information ########################################
 
-st.set_page_config(layout= 'wide', page_title = '🍜 Anime Recommender')
+st.set_page_config(layout= 'wide', page_title = ' Anime Recommender', page_icon="🍙")
 
 ######################################## read_csv########################################
 @st.cache_data
