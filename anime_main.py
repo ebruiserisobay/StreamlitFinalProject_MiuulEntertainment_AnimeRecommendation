@@ -57,8 +57,8 @@ def get_svd_recommendations_anime(user_id, n_recommendations=5):
     for anime_id in all_anime_ids:
         if anime_id not in anime_ids:
             # Tahmin yapmak için uygun veri yapısını oluştur
-            pred = model_final.predict([[user_id, anime_id]])
-            recommendations.append((anime_id, pred[0]))
+            clipped_predictions = np.clip(pred, 1, 10)
+            recommendations.append((anime_id, clipped_predictions[0]))
 
     # Tahmin edilen puanlara göre sıralama yap
     recommendations = sorted(recommendations, key=lambda x: x[1], reverse=True)[:n_recommendations]
