@@ -594,7 +594,7 @@ if user_response == "Sure":
         else:
             anime_1, anime_2, anime_3, anime_4, anime_5 = anime_tab.columns(5)
             animecol1, animecol2, animecol3 = anime_tab.columns([1, 0.5, 1], gap='large')
-            recommend_button = animecol2.button('Discover More!')
+            recommend_button = animecol2.button('Discover Your Next Favorite Anime')
             if recommend_button:
                 animecol1, animecol2, animecol3, animecol4, animecol5 = anime_tab.columns([1, 0.3, 1, 0.38, 1])
                 animecol3.markdown(
