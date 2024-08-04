@@ -430,7 +430,7 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
 
     # ! imdb column
     image_movie = 'https://media.tenor.com/HJTXKCtOYwgAAAAM/perfect-popcorn.gif'
-    redirect_movie = "https://appent-g9qe2nhwhrvvgnhkqybvzq.streamlit.app/"
+    redirect_movie = "https://miuulmainpage.streamlit.app/"
 
     html_movie = f"""
     <div style="position: relative; width: 150px; height: 150px;">
@@ -446,7 +446,7 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
 
     # ! amazon column
     image_amazon = "https://c.tenor.com/xrld-zE_4IAAAAAd/tenor.gif"
-    redirect_amazon = "https://www.amazon.com/Best-Books-of-2024-So-Far/b?ie=UTF8&node=3003015011"
+    redirect_amazon = "https://book-recomendations.streamlit.app/"
     html_amazon = f"""
     <div style="position: relative; width: 150px; height: 150px;">
         <a href="{redirect_amazon}" target="_blank">
@@ -460,7 +460,7 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
 
     # ! steam column
     image_steam = "https://media1.tenor.com/m/zjbXreUb5_YAAAAd/steam.gif"
-    redirect_steam = "https://store.steampowered.com/"
+    redirect_steam = "https://gamerecommendations.streamlit.app/"
 
     html_steam = f"""
     <div style="position: relative; width: 150px; height: 150px;">
@@ -594,7 +594,7 @@ if user_response == "Sure":
         else:
             anime_1, anime_2, anime_3, anime_4, anime_5 = anime_tab.columns(5)
             animecol1, animecol2, animecol3 = anime_tab.columns([1, 0.5, 1], gap='large')
-            recommend_button = animecol2.button('Discover Your Next Favorite Anime')
+            recommend_button = animecol2.button('Discover More!')
             if recommend_button:
                 animecol1, animecol2, animecol3, animecol4, animecol5 = anime_tab.columns([1, 0.3, 1, 0.38, 1])
                 animecol3.markdown(
