@@ -70,7 +70,7 @@ def get_svd_recommendations_anime(user_id, n_recommendations=5):
 
     # Önerilen anime bilgilerini al ve tahmin edilen puanı ekle
     recommended_animes = anime_data[anime_data['MAL_ID'].isin(recommended_anime_ids)][
-        ['MAL_ID', 'Name', 'Japanese_name']]
+        ['MAL_ID', 'Name']]
     recommended_animes['Predicted_Rating'] = recommended_ratings
 
     return recommended_animes[['MAL_ID', 'Name', 'Predicted_Rating']]
@@ -99,8 +99,8 @@ def content_based_recommender_anime(anime_name, cosine_sim, dataframe):
     # Benzerlik skorlarına göre sıralama ve ilk 10 öneri (ilk eleman kendisi olduğundan hariç)
     anime_indices = sim_scores.sort_values('score', ascending=False).index[1:8]
     # Önerilen anime isimlerini döndür
-    last_df = dataframe[['MAL_ID','Name','Japanese_name','Score']].iloc[anime_indices].sort_values('Score',ascending = False)[0:5]
-    return last_df[['MAL_ID','Name','Japanese_name','Score']]
+    last_df = dataframe[['MAL_ID','Name','Score']].iloc[anime_indices].sort_values('Score',ascending = False)[0:5]
+    return last_df[['MAL_ID','Name','Score']]
 
 def content_based_recommender_anime_10(anime_name, cosine_sim, dataframe):
     # Anime isimlerinden oluşan indeks serisi oluştur
@@ -114,8 +114,8 @@ def content_based_recommender_anime_10(anime_name, cosine_sim, dataframe):
     # Benzerlik skorlarına göre sıralama ve ilk 10 öneri (ilk eleman kendisi olduğundan hariç)
     anime_indices = sim_scores.sort_values('score', ascending=False).index[1:12]
     # Önerilen anime isimlerini döndür
-    last_df = dataframe[['MAL_ID','Name','Japanese_name','Score']].iloc[anime_indices].sort_values('Score',ascending = False)[0:10]
-    return last_df[['MAL_ID','Name','Japanese_name','Score']]
+    last_df = dataframe[['MAL_ID','Name','Score']].iloc[anime_indices].sort_values('Score',ascending = False)[0:10]
+    return last_df[['MAL_ID','Name','Score']]
 
 
 ######################################## home_tab image info ########################################
@@ -521,7 +521,6 @@ if user_response == "Sure":
 
                             anime_id = anime_row['MAL_ID']
                             anime_title = anime_row['Name']
-                            anime_japanese = anime_row['Japanese_name']
                             anime_score = anime_row['Score']
 
                             # `anime` DataFrame'inde anime ID'sine göre arama yap
@@ -637,7 +636,6 @@ else:
                         anime_row = recommendations_df_10.iloc[index]
                         anime_id = anime_row['MAL_ID']
                         anime_title = anime_row['Name']
-                        anime_japanese = anime_row['Japanese_name']
                         anime_score = anime_row['Score']
 
                         # `anime` DataFrame'inde anime ID'sine göre arama yap
