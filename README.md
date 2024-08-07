@@ -1,8 +1,8 @@
-#Business Problem:
+# Business Problem:
 
 A recommendation system has been designed to predict the ratings that users would give to anime they haven’t watched and to suggest films similar to those they have selected.
 
-#About Dataset:
+# About Dataset:
 
 Recommendation data at myanimelist.net. This dataset contains information about anime and the preference from different users.
 
